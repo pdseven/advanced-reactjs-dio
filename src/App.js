@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { ThemeContext, themes } from './Theme'
-import Card from './Card'
+import React, { useState } from 'react'
+import PhotosGallery from './Component/PhotosGallery'
 
-function App () {
-  const [token, setToken] = useState()
-  
-  useEffect(() => {
-    setTimeout(() => {
-      setToken('31a5s6d54as5d1')
-    }, 4000)
-  }, [setToken])
+function App() {
+  const photos = [
+    "http://placeimg.com/140/60/people",
+    "http://placeimg.com/140/60/animals",
+    "http://placeimg.com/140/60/tech",
+    "http://placeimg.com/140/60/any",
+    "http://placeimg.com/140/60/nature",
+  ]
 
   return (
-    <ThemeContext.Provider value={themes.primary}>
-      <Card />
-    </ThemeContext.Provider>
+    <>
+    <h1>Galeria de fotos</h1>
+    <PhotosGallery
+      photos={photos}
+    />
+    </>
   )
 }
 
