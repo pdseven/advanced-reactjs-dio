@@ -1,20 +1,30 @@
-import React, { useState, useEffect } from 'react'
-import { ThemeContext, themes } from './Theme'
-import Card from './Card'
+import React, { useRef, useEffect, useState } from 'react'
 
-function App () {
-  const [token, setToken] = useState()
-  
+
+function App() {
+  const inputRef = useRef()
+  const count = useRef(1)
+  const [value, setValue] = useState(false)
+
+  const handleClick = () => {
+    inputRef.current.focus()
+    console.log('inputRef.current', inputRef.current)
+  }
+
   useEffect(() => {
     setTimeout(() => {
-      setToken('31a5s6d54as5d1')
-    }, 4000)
-  }, [setToken])
-
+      console.log('passou aqui')
+      count.current = 300
+      setValue(true)
+    }, 3000)
+  })
   return (
-    <ThemeContext.Provider value={themes.primary}>
-      <Card />
-    </ThemeContext.Provider>
+    <>
+    <h1>Valor de Count: {count.current}</h1>
+      Foco: <input ref={inputRef} />
+      <br/>
+      <button onClick={handleClick}>Focar</button>
+    </>
   )
 }
 
